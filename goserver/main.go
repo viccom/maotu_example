@@ -3,13 +3,16 @@ package main
 import (
 	"embed"
 	"encoding/json"
+	"flag"
 	"io/fs"
 	"io/ioutil"
 	"log"
 	"math/rand"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"sync"
 	"time"
@@ -235,7 +238,26 @@ func staticFileServer() gin.HandlerFunc {
 		c.Abort() // 终止请求链，防止传递给 Gin 的 NoRoute
 	}
 }
+
+func openBrowser(url string) {
+	var err error
+	switch runtime.GOOS {
+	case "windows":
+		err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
+	case "darwin":
+		err = exec.Command("open", url).Start()
+	default:
+		err = exec.Command("xdg-open", url).Start()
+	}
+	_ = err
+}
+
 func main() {
+	// 解析命令行参数
+	addr := flag.String("addr", ":3000", "监听地址")
+	autoOpen := flag.Bool("open", true, "启动后自动打开浏览器")
+	flag.Parse()
+
 	rand.Seed(time.Now().UnixNano())
 	loadDevices()
 	simDataMap = make(map[string]interface{})
@@ -303,13 +325,16 @@ func main() {
 
 	// 启动 HTTP 服务
 	go func() {
-		log.Println("HTTP server running at http://localhost:3000")
-		log.Println("Access the web UI at http://localhost:3000")
-		if err := router.Run(":3000"); err != nil {
+		log.Println("HTTP server running at http://localhost" + *addr)
+		log.Println("Access the web UI at http://localhost" + *addr)
+		if err := router.Run(*addr); err != nil {
 			log.Fatal(err)
 		}
 	}()
 
+	if *autoOpen {
+		go openBrowser("http://127.0.0.1" + *addr)
+	}
 	// 启动独立的 WebSocket 服务（这个部分保持不变）
 	http.HandleFunc("/", wsHandlerRaw)
 	log.Println("WebSocket server running at ws://localhost:3001")
@@ -317,105 +342,3 @@ func main() {
 		log.Fatal(err)
 	}
 }
-
-// func main() {
-// 	rand.Seed(time.Now().UnixNano())
-// 	loadDevices()
-// 	simDataMap = make(map[string]interface{})
-// 	startSimulate()
-
-// 	router := gin.Default()
-// 	// 1. 创建一个从 "dist" 目录开始的子文件系统
-// 	staticFS, err := fs.Sub(distFS, "dist")
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
-
-// 	// HTTP API
-// 	router.GET("/api/devices", func(c *gin.Context) {
-// 		c.JSON(http.StatusOK, devicesList)
-// 	})
-// 	router.GET("/api/datas", func(c *gin.Context) {
-// 		simDataMutex.RLock()
-// 		defer simDataMutex.RUnlock()
-// 		c.JSON(http.StatusOK, simDataMap)
-// 	})
-// 	router.POST("/api/saveview", func(c *gin.Context) {
-// 		var body map[string]interface{}
-// 		if err := c.ShouldBindJSON(&body); err != nil {
-// 			c.JSON(http.StatusBadRequest, gin.H{"success": false, "message": "参数错误"})
-// 			return
-// 		}
-// 		b, _ := json.MarshalIndent(body, "", "  ")
-// 		if err := ioutil.WriteFile(viewJsonPath, b, 0644); err != nil {
-// 			c.JSON(http.StatusInternalServerError, gin.H{"success": false, "message": "保存失败"})
-// 			return
-// 		}
-// 		c.JSON(http.StatusOK, gin.H{"success": true, "message": "配置已保存"})
-// 	})
-// 	router.GET("/api/loadview", func(c *gin.Context) {
-// 		if _, err := os.Stat(viewJsonPath); os.IsNotExist(err) {
-// 			c.JSON(http.StatusNotFound, gin.H{"success": false, "message": "未找到 view.json"})
-// 			return
-// 		}
-// 		b, err := ioutil.ReadFile(viewJsonPath)
-// 		if err != nil {
-// 			c.JSON(http.StatusInternalServerError, gin.H{"success": false, "message": "读取失败"})
-// 			return
-// 		}
-// 		var viewConfig interface{}
-// 		if err := json.Unmarshal(b, &viewConfig); err != nil {
-// 			c.JSON(http.StatusInternalServerError, gin.H{"success": false, "message": "解析失败"})
-// 			return
-// 		}
-// 		c.JSON(http.StatusOK, viewConfig)
-// 	})
-
-// 	// WebSocket
-// 	router.GET("/ws", func(c *gin.Context) {
-// 		wsHandler(c)
-// 	})
-// 	// 2. 将这个子文件系统挂载到根URL "/"
-// 	// http.FS 将 io/fs.FS 转换为 net/http.FileSystem
-// 	// StaticFS 会处理所有静态文件的请求 (如 /index.html, /css/app.css)
-// 	router.StaticFS("/", http.FS(staticFS))
-
-// 	// 3. 设置 NoRoute 来处理 SPA 的 history 模式路由
-// 	// 当请求的路径在静态文件中不存在时 (例如 /user/123),
-// 	// StaticFS 会认为找不到文件，请求会继续传递到 NoRoute 处理器。
-// 	router.NoRoute(func(c *gin.Context) {
-// 		// 只处理 GET 请求，并且路径不是 API 或 WebSocket
-// 		if c.Request.Method == http.MethodGet &&
-// 			!strings.HasPrefix(c.Request.URL.Path, "/api/") &&
-// 			!strings.HasPrefix(c.Request.URL.Path, "/ws") {
-
-// 			// 读取并返回 index.html
-// 			data, err := distFS.ReadFile("dist/index.html")
-// 			if err != nil {
-// 				c.String(http.StatusInternalServerError, "index.html not found")
-// 				return
-// 			}
-// 			c.Data(http.StatusOK, "text/html; charset=utf-8", data)
-// 		} else {
-// 			c.Next()
-// 		}
-// 	})
-
-// 	// 启动 HTTP 服务
-// 	go func() {
-// 		log.Println("HTTP API server running at http://localhost:3000")
-// 		log.Println("请访问 http://localhost:3000/api/devices 获取设备列表")
-// 		log.Println("请访问 http://localhost:3000/api/datas 获取仿真数据")
-// 		if err := router.Run(":3000"); err != nil {
-// 			log.Fatal(err)
-// 		}
-// 	}()
-
-// 	// 启动 WebSocket 服务（ws://localhost:3001）
-// 	http.HandleFunc("/", wsHandlerRaw)
-// 	log.Println("WebSocket server running at ws://localhost:3001")
-// 	log.Println("请连接 ws://localhost:3001 获取实时仿真数据")
-// 	if err := http.ListenAndServe(":3001", nil); err != nil {
-// 		log.Fatal(err)
-// 	}
-// }
