@@ -1,7 +1,10 @@
 package main
 
 import (
+	"bytes"
+	"embed"
 	"encoding/json"
+	"io/fs"
 	"io/ioutil"
 	"log"
 	"math/rand"
@@ -37,6 +40,9 @@ var (
 	}
 	wsClients     = make(map[*websocket.Conn]bool)
 	wsClientsLock sync.Mutex
+
+	//go:embed dist/*
+	distFS embed.FS
 )
 
 func init() {
@@ -228,6 +234,25 @@ func main() {
 			return
 		}
 		c.JSON(http.StatusOK, viewConfig)
+	})
+
+	// 静态文件服务（将 dist 目录嵌入并作为静态资源服务，挂载到 /static）
+	distSubFS, _ := fs.Sub(distFS, "dist")
+	router.StaticFS("/static", http.FS(distSubFS))
+
+	// SPA history fallback: 其它未命中的 GET 路由都返回 index.html
+	router.NoRoute(func(c *gin.Context) {
+		if c.Request.Method != http.MethodGet {
+			c.Next()
+			return
+		}
+		data, err := distFS.ReadFile("dist/index.html")
+		if err != nil {
+			c.String(500, "index.html not found")
+			return
+		}
+		c.Header("Content-Type", "text/html; charset=utf-8")
+		http.ServeContent(c.Writer, c.Request, "index.html", time.Now(), bytes.NewReader(data))
 	})
 
 	// WebSocket

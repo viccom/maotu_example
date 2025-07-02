@@ -6,6 +6,10 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  build: {
+    outDir: './goserver/dist', // 指定输出目录（默认是 'dist'）
+    emptyOutDir: true,     // 构建前清空目录（可选）
+  },
   plugins: [vue()],
   resolve: {
     alias: {
