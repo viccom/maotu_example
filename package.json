@@ -5,18 +5,22 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "server": "node ./server/index.js"
+    "server": "node ./server/index.js",
+    "bun:dev": "bun run vite",
+    "bun:build": "bun run vite build",
+    "bun:server": "bun ./server/index.js"
   },
   "dependencies": {
-    "element-plus": "^2.5.0",
+    "element-plus": "^2.10.2",
+    "express": "^5.1.0",
     "maotu": "^0.6.5",
-    "vue": "^3.4.0",
-    "vue-router": "^4.2.0",
-    "ws": "^8.0.0"
+    "vue": "^3.5.17",
+    "vue-router": "^4.5.1",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
-    "typescript": "^5.0.0",
-    "vite": "^4.0.0"
+    "@vitejs/plugin-vue": "^6.0.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0"
   }
 }

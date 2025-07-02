@@ -14,6 +14,13 @@ export default defineConfig({
   },
   server: {
     port: 5673,
+        proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:3000',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '/api'), // 通常无需重写
+      }
+    },
     host: '0.0.0.0' // 明确监听所有地址
   }
 });

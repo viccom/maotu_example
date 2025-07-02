@@ -5,6 +5,7 @@ const WebSocket = require('ws');
 
 // 1. 加载 devices.json
 const devicesPath = path.join(__dirname, 'devices.json');
+const VIEW_JSON_PATH = path.join(__dirname, 'view.json'); // 画布配置文件路径
 let devicesList = [];
 try {
   const raw = fs.readFileSync(devicesPath, 'utf-8');
@@ -25,6 +26,20 @@ app.get('/api/devices', (req, res) => {
 });
 app.get('/api/datas', (req, res) => {
   res.json(simDataMap);
+});
+// 保存画布配置到 view.json
+app.post('/api/saveview', express.json(), (req, res) => {
+  fs.writeFileSync(VIEW_JSON_PATH, JSON.stringify(req.body, null, 2));
+  res.json({ success: true, message: '配置已保存' });
+});
+// 从 view.json 加载画布配置
+app.get('/api/loadview', (req, res) => {
+  if (fs.existsSync(VIEW_JSON_PATH)) {
+    const viewConfig = JSON.parse(fs.readFileSync(VIEW_JSON_PATH, 'utf-8'));
+    res.json(viewConfig);
+  } else {
+    res.status(404).json({ success: false, message: '未找到 view.json' });
+  }
 });
 app.listen(HTTP_PORT, () => {
   console.log(`HTTP API server running at http://localhost:${HTTP_PORT}`);
