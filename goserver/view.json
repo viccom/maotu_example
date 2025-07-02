@@ -1,0 +1,531 @@
+{
+  "canvasCfg": {
+    "width": 1920,
+    "height": 1080,
+    "scale": 1,
+    "color": "",
+    "img": "",
+    "guide": true,
+    "adsorp": true,
+    "adsorp_diff": 5,
+    "transform_origin": {
+      "x": 0,
+      "y": 0
+    },
+    "drag_offset": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "gridCfg": {
+    "enabled": true,
+    "align": true,
+    "size": 10
+  },
+  "json": [
+    {
+      "id": "text-vue-zlFAKpSJyf",
+      "title": "tag1",
+      "type": "vue",
+      "binfo": {
+        "width": 120,
+        "height": 30,
+        "left": 151.98579025268555,
+        "top": 96.00003051757812,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "电流：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(9, 9, 8, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": [
+        {
+          "id": "uV3kLEcHpv",
+          "pel_id": "text-vue-zlFAKpSJyf",
+          "bind_id": "devA.current",
+          "bind_name": "设备A-电流",
+          "bind_attr": "props.text.val",
+          "bind_mapping": [],
+          "triggers": []
+        }
+      ]
+    },
+    {
+      "id": "text-vue-S4BnRtJOzL",
+      "title": "tag2",
+      "type": "vue",
+      "binfo": {
+        "width": 120,
+        "height": 30,
+        "left": 151.98579025268555,
+        "top": 151.9801483154297,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "电压：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(9, 9, 8, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": [
+        {
+          "id": "HUB8dtiRVi",
+          "pel_id": "text-vue-S4BnRtJOzL",
+          "bind_id": "devA.voltage",
+          "bind_name": "设备A-电压",
+          "bind_attr": "props.text.val",
+          "bind_mapping": [],
+          "triggers": []
+        }
+      ]
+    },
+    {
+      "id": "text-vue-7CG1Zf2vFE",
+      "title": "tag3",
+      "type": "vue",
+      "binfo": {
+        "width": 120,
+        "height": 30,
+        "left": 151.98579025268555,
+        "top": 209.9630889892578,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "功率：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(9, 9, 8, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": [
+        {
+          "id": "ZeDDCAXWHL",
+          "pel_id": "text-vue-7CG1Zf2vFE",
+          "bind_id": "devA.power",
+          "bind_name": "设备A-功率",
+          "bind_attr": "props.text.val",
+          "bind_mapping": [],
+          "triggers": []
+        }
+      ]
+    },
+    {
+      "id": "text-vue-HNaTUjHKop",
+      "title": "文字",
+      "type": "vue",
+      "binfo": {
+        "width": 60,
+        "height": 30,
+        "left": 92.00001335144043,
+        "top": 96.00003051757812,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "电流：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(89, 4, 31, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": []
+    },
+    {
+      "id": "text-vue-MHR4OrVExi",
+      "title": "文字",
+      "type": "vue",
+      "binfo": {
+        "width": 60,
+        "height": 30,
+        "left": 92.00001335144043,
+        "top": 151.9801483154297,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "电压：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(89, 4, 31, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": []
+    },
+    {
+      "id": "text-vue-5Gfsyrs91o",
+      "title": "文字",
+      "type": "vue",
+      "binfo": {
+        "width": 60,
+        "height": 30,
+        "left": 92.00001335144043,
+        "top": 209.2954864501953,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "功率：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(89, 4, 31, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": []
+    },
+    {
+      "id": "text-vue-yc9knLBWz3",
+      "title": "tag4",
+      "type": "vue",
+      "binfo": {
+        "width": 120,
+        "height": 30,
+        "left": 399.9999809265137,
+        "top": 96.00003051757812,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "温度：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(9, 9, 8, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": [
+        {
+          "id": "p3Ha9EvtY2",
+          "pel_id": "text-vue-yc9knLBWz3",
+          "bind_id": "devB.temp",
+          "bind_name": "设备B-温度",
+          "bind_attr": "props.text.val",
+          "bind_mapping": [],
+          "triggers": []
+        }
+      ]
+    },
+    {
+      "id": "text-vue-qzU6rDwVZD",
+      "title": "tag5",
+      "type": "vue",
+      "binfo": {
+        "width": 120,
+        "height": 30,
+        "left": 399.9857597351074,
+        "top": 151.9801483154297,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "湿度：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(9, 9, 8, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": [
+        {
+          "id": "6Ag66bl2hn",
+          "pel_id": "text-vue-qzU6rDwVZD",
+          "bind_id": "devB.humi",
+          "bind_name": "设备B-湿度",
+          "bind_attr": "props.text.val",
+          "bind_mapping": [],
+          "triggers": []
+        }
+      ]
+    },
+    {
+      "id": "text-vue-eKqnHI11pz",
+      "title": "tag6",
+      "type": "vue",
+      "binfo": {
+        "width": 120,
+        "height": 30,
+        "left": 399.9857597351074,
+        "top": 209.6363983154297,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "开关：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(9, 9, 8, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": [
+        {
+          "id": "T42l0XEBGk",
+          "pel_id": "text-vue-eKqnHI11pz",
+          "bind_id": "devB.switch",
+          "bind_name": "设备B-开关",
+          "bind_attr": "props.text.val",
+          "bind_mapping": [],
+          "triggers": [
+            {
+              "id": "vvTsFTCK8D",
+              "action": "changeAttr",
+              "rule": {
+                "operator": "=",
+                "value": "true"
+              },
+              "change_attr": [
+                {
+                  "id": "xGZ6iEEUWd",
+                  "target_id": "text-vue-eKqnHI11pz",
+                  "target_attr": "props.fill.val",
+                  "target_value": "#80FF00"
+                }
+              ],
+              "custom_code": ""
+            },
+            {
+              "id": "jZTzlnBw3j",
+              "action": "changeAttr",
+              "rule": {
+                "operator": "=",
+                "value": "false"
+              },
+              "change_attr": [
+                {
+                  "id": "xigdnyLLZi",
+                  "target_id": "text-vue-eKqnHI11pz",
+                  "target_attr": "props.fill.val",
+                  "target_value": "#070000"
+                }
+              ],
+              "custom_code": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text-vue-vPnVKl1Q8j",
+      "title": "文字",
+      "type": "vue",
+      "binfo": {
+        "width": 60,
+        "height": 30,
+        "left": 339.9999828338623,
+        "top": 96.00003051757812,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "温度：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(89, 4, 31, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": []
+    },
+    {
+      "id": "text-vue-Gm1qpPjL25",
+      "title": "文字",
+      "type": "vue",
+      "binfo": {
+        "width": 60,
+        "height": 30,
+        "left": 339.9999828338623,
+        "top": 151.9801483154297,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "湿度：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(89, 4, 31, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": []
+    },
+    {
+      "id": "text-vue-tANIT2tDRE",
+      "title": "文字",
+      "type": "vue",
+      "binfo": {
+        "width": 60,
+        "height": 30,
+        "left": 339.9999828338623,
+        "top": 208.96876525878906,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "开关：",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(89, 4, 31, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": []
+    }
+  ],
+  "eventList": [],
+  "eventFlow": []
+}

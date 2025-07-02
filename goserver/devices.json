@@ -1,0 +1,29 @@
+[
+  {
+    "label": "设备A",
+    "value": "devA",
+    "children": [
+      { "label": "电流", "value": "devA.current", "dtype": "float" },
+      { "label": "功率", "value": "devA.power", "dtype": "float" },
+      { "label": "频率", "value": "devA.frequency", "dtype": "float" },
+      { "label": "电压", "value": "devA.voltage", "dtype": "float" },
+      { "label": "功率因数", "value": "devA.powerFactor", "dtype": "float" },
+      { "label": "总电能", "value": "devA.totalEnergy", "dtype": "float" },
+      { "label": "瞬时电能", "value": "devA.instantEnergy", "dtype": "float" },
+      { "label": "开关", "value": "devA.switch", "dtype": "bool" },
+      { "label": "状态", "value": "devA.status", "dtype": "bool" }
+    ]
+  },
+  {
+    "label": "设备B",
+    "value": "devB",
+    "children": [
+      { "label": "温度", "value": "devB.temp", "dtype": "float"},
+      { "label": "湿度", "value": "devB.humi", "dtype": "float"},
+      { "label": "光照强度", "value": "devB.lightIntensity", "dtype": "float"},
+      { "label": "风速", "value": "devB.windSpeed", "dtype": "float"},
+      { "label": "开关", "value": "devB.switch", "dtype": "bool" },
+      { "label": "状态", "value": "devB.status", "dtype": "bool" }
+    ]
+  }
+]
