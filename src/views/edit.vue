@@ -12,31 +12,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { MtEdit, type IExportJson } from 'maotu';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-// 设备变量信息，参考 bind-device/edit.vue
-const deviceInfo = ref([
-  {
-    label: '设备A',
-    value: 'devA',
-    children: [
-      { label: '浮点变量', value: 'floatVar' },
-      { label: '开关变量', value: 'boolVar' }
-    ]
-  },
-  {
-    label: '设备B',
-    value: 'devB',
-    children: [
-      { label: '温度', value: 'temp' },
-      { label: '湿度', value: 'humi' }
-    ]
+// 加载设备变量信息（通过接口获取）
+const deviceInfo = ref([]);
+
+onMounted(async () => {
+  try {
+    const res = await fetch('/api/devices');
+    if (res.ok) {
+      deviceInfo.value = await res.json();
+    } else {
+      console.error('获取设备信息失败', res.status);
+    }
+  } catch (err) {
+    console.error('获取设备信息异常', err);
   }
-]);
+});
 
 const onPreviewClick = (exportJson: IExportJson) => {
   sessionStorage.setItem('exportJson', JSON.stringify(exportJson));
@@ -57,4 +53,3 @@ const onItemResizeDone = (e: any) => {
 };
 </script>
 
-<style scoped></style>

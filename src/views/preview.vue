@@ -12,6 +12,7 @@ import { MtPreview } from 'maotu';
 
 const MtPreviewRef = ref<InstanceType<typeof MtPreview>>();
 let ws: WebSocket | null = null;
+let tagKeys: string[] = [];
 
 // 事件回调（如有需要可自定义处理）
 const onEventCallBack = (type: string, item_id: string) => {
@@ -19,13 +20,28 @@ const onEventCallBack = (type: string, item_id: string) => {
   // 可根据实际需求处理事件
 };
 
-onMounted(() => {
-  // 加载编辑时保存的组态数据
-  const json = sessionStorage.getItem('exportJson');
-  if (json) {
-    MtPreviewRef.value?.setImportJson(JSON.parse(json));
+async function fetchDeviceTags() {
+  try {
+    const res = await fetch('/api/devices');
+    if (!res.ok) {
+      throw new Error('获取设备信息失败: ' + res.status);
+    }
+    const devices = await res.json();
+    // 收集所有 children.value
+    tagKeys = [];
+    devices.forEach((dev: any) => {
+      if (Array.isArray(dev.children)) {
+        dev.children.forEach((child: any) => {
+          if (child.value) tagKeys.push(child.value);
+        });
+      }
+    });
+  } catch (err) {
+    console.error('获取设备信息异常', err);
   }
-  // 连接后端WebSocket服务
+}
+
+function connectWebSocket() {
   ws = new WebSocket('ws://localhost:3001');
   ws.onopen = () => {
     console.log('WebSocket connected');
@@ -33,15 +49,13 @@ onMounted(() => {
   ws.onmessage = (event) => {
     console.log('WebSocket message:', event.data);
     const data = JSON.parse(event.data);
-    // 通过maotu API更新组件属性，变量名需与组态绑定一致
+    // 遍历所有标签变量，赋值
     if (MtPreviewRef.value) {
-      if ('floatVar' in data) {
-        MtPreviewRef.value.setDevicePointByID('floatVar', data.floatVar);
-      }
-      if ('boolVar' in data) {
-        MtPreviewRef.value.setDevicePointByID('boolVar', data.boolVar);
-      }
-      // 如有其它变量可继续扩展
+      tagKeys.forEach(tagkey => {
+        if (tagkey in data) {
+          MtPreviewRef.value.setDevicePointByID(tagkey, data[tagkey]);
+        }
+      });
     }
   };
   ws.onerror = (err) => {
@@ -50,6 +64,17 @@ onMounted(() => {
   ws.onclose = () => {
     console.log('WebSocket closed');
   };
+}
+
+onMounted(async () => {
+  // 加载编辑时保存的组态数据
+  const json = sessionStorage.getItem('exportJson');
+  if (json) {
+    MtPreviewRef.value?.setImportJson(JSON.parse(json));
+  }
+  // 先获取设备标签变量，再连接 WebSocket
+  await fetchDeviceTags();
+  connectWebSocket();
 });
 onUnmounted(() => {
   ws?.close();
