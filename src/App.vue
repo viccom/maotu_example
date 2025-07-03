@@ -30,21 +30,7 @@ for (const key in modulesFiles) {
         type:'number',
         val:0,
         title:'点位'
-      },
-      // 新增液柱高度控制
-      liquidHeight: {
-        type: 'number',
-        val: 30,              // 默认高度（与 SVG 原始值一致）
-        title: '液柱高度',
-        min: 0,               // 最小高度（完全收缩）
-        max: 140,             // 最大高度（180 - 40，根据容器计算）
-      },
-      // 新增开关
-      isOpen: {
-        type: 'switch',
-        val: false, // 默认关闭状态
-        title: '开关状态'
-      },
+      }
     }
     // 可选：添加其他属性
   })
