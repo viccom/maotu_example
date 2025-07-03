@@ -312,7 +312,7 @@ func main() {
 		})
 	}
 
-	// 注册 WebSocket 路由
+	// 注册 gin WebSocket 路由
 	router.GET("/ws", func(c *gin.Context) {
 		wsHandler(c)
 	})
@@ -325,8 +325,11 @@ func main() {
 
 	// 启动 HTTP 服务
 	go func() {
+		log.Println("请访问 http://localhost:3000/api/devices 获取设备列表")
+		log.Println("请访问 http://localhost:3000/api/datas 获取仿真数据")
 		log.Println("HTTP server running at http://localhost" + *addr)
 		log.Println("Access the web UI at http://localhost" + *addr)
+		log.Println("Press Ctrl+C to stop the server")
 		if err := router.Run(*addr); err != nil {
 			log.Fatal(err)
 		}
@@ -337,6 +340,7 @@ func main() {
 	}
 	// 启动独立的 WebSocket 服务（这个部分保持不变）
 	http.HandleFunc("/", wsHandlerRaw)
+	log.Println("请连接 ws://localhost:3001 获取实时仿真数据")
 	log.Println("WebSocket server running at ws://localhost:3001")
 	if err := http.ListenAndServe(":3001", nil); err != nil {
 		log.Fatal(err)
