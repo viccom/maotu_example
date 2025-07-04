@@ -30,8 +30,9 @@
         />
       </g>
     </svg>
-  </template>
-  <script setup lang="ts">
+</template>
+<!-- 导出属性 -->
+<script setup lang="ts">
   const props = defineProps({
     id: String,
     circleFill: String,

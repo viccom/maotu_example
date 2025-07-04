@@ -36,7 +36,7 @@
     </text>
   </svg>
 </template>
-
+<!-- 导出属性 -->
 <script setup lang="ts">
 const props = defineProps({
   id: String,
