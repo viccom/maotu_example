@@ -10,7 +10,9 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { MtPreview } from 'maotu';
 
+
 const MtPreviewRef = ref<InstanceType<typeof MtPreview>>();
+
 let ws: WebSocket | null = null;
 let tagKeys: string[] = [];
 
