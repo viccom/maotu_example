@@ -7,12 +7,12 @@ import { defineAsyncComponent } from 'vue'
 const SwitchComponent = defineAsyncComponent(() => import('./components/custom-switch.vue'))
 const threeCircle = defineAsyncComponent(  () => import('./components/custom-demo.vue'))
 const mybutton = defineAsyncComponent(() => import('./components/button1.vue'))
-const TemperatureMeter = defineAsyncComponent(() => import('./components/TemperatureMeter.vue'))
+const tempMeter = defineAsyncComponent(() => import('@/components/TemperatureMeter.vue'))
 const instance = getCurrentInstance();
 instance?.appContext.app.component('customSwitch', SwitchComponent);
 instance?.appContext.app.component('threeCircle', threeCircle);
 instance?.appContext.app.component('button1', mybutton);
-instance?.appContext.app.component('TemperatureMeter', TemperatureMeter);
+instance?.appContext.app.component('tempMeter', tempMeter);
 const modulesFiles = import.meta.glob("/public/svgs/**.svg", { eager: true, as: 'raw' })
 const register_config:any = [];
 // import svgdemo from '/svgs/demo.svg?raw'; // 引入svg文件
@@ -99,88 +99,7 @@ leftAsideStore.registerConfig('自定义svg', [
       }
     }
   },
-  {
-    id: 'TemperatureMeter',
-    title: '温度计',
-    type: 'custom-svg',
-    thumbnail: '/svgs/TemperatureMeter.svg',
-    props: {
-      // width: {
-      //   type: 'number',
-      //   val: 180,
-      //   title: '宽度'
-      // },
-      // height: {
-      //   type: 'number',
-      //   val: 300,
-      //   title: '高度'
-      // },
-      // minTemp: {
-      //   type: 'number',
-      //   val: -20,
-      //   title: '最小温度'
-      // },
-      // maxTemp: {
-      //   type: 'number',
-      //   val: 100,
-      //   title: '最大温度'
-      // },
-      // currentTemp: {
-      //   type: 'number',
-      //   val: 20,
-      //   title: '当前温度'
-      // },
-      // unit: {
-      //   type: 'select',
-      //   val: 'C',
-      //   options: [
-      //     { value: 'C', label: '摄氏度' },
-      //     { value: 'F', label: '华氏度' }
-      //   ],
-      //   title: '温度单位'
-      // },
-      // caseFill: {
-      //   type: 'color',
-      //   val: '#fff',
-      //   title: '外壳填充色'
-      // },
-      // caseStroke: {
-      //   type: 'color',
-      //   val: '#000',
-      //   title: '外壳边框色'
-      // },
-      // caseStrokeWidth: {
-      //   type: 'number',
-      //   val: 2,
-      //   title: '外壳边框宽度'
-      // },
-      // bgFill: {
-      //   type: 'color',
-      //   val: '#eee',
-      //   title: '背景填充色'
-      // },
-      // tempBarFill:{
-      //     type:'color',
-      //     val:'red',
-      //     title:'温度条颜色'
-      // },
-      // scaleStroke:{
-      //     type:'color',
-      //     val:'#000',
-      //     title:'刻度线颜色'
-      // },
-      // scaleTextColor:{
-      //     type:'color',
-      //     val:'#000',
-      //     title:'刻度文字颜色'
-      // },
-      // unitTextColor:{
-      //     type:'color',
-      //     val:'#000',
-      //     title:'单位文字颜色'
-      // },
-    }
-  }
+
 
 ]);
 
@@ -232,7 +151,26 @@ leftAsideStore.registerConfig('vue组件', [
                 ]
             }
         }
+    },
+    {
+    id: 'tempMeter',
+    title: '温度计',
+    type: 'vue',
+    thumbnail: '/svgs/TemperatureMeter.svg',
+    props: {
+      currentTemp: {
+        type: 'number',
+        val: 20,
+        title: '当前温度',
+        options: {
+          containerStyle: {
+            width: '80px',
+            height: '300px'
+          }
+        }
+      }
     }
+  }
 ]);
 </script>
 
