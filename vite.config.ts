@@ -24,7 +24,12 @@ export default defineConfig({
         target: 'http://127.0.0.1:3000',
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, '/api'), // 通常无需重写
-      }
+      },
+      '/ws': {
+        target: 'ws://127.0.0.1:3001',
+        changeOrigin: true,
+        ws: true,
+      },
     },
     host: '0.0.0.0' // 明确监听所有地址
   }
