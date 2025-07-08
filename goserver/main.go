@@ -44,7 +44,7 @@ var (
 	wsClients     = make(map[*websocket.Conn]bool)
 	wsClientsLock sync.Mutex
 
-	//go:embed dist
+	//go:embed dist/**
 	distFS embed.FS
 )
 
@@ -263,14 +263,24 @@ func main() {
 	simDataMap = make(map[string]interface{})
 	startSimulate()
 
-	router := gin.Default()
+	r := gin.Default()
 
 	// --- 核心改动：使用我们的自定义中间件 ---
 	// 这个中间件会处理所有非 API 的 GET 请求
-	router.Use(staticFileServer())
+	r.Use(staticFileServer())
 
+	// 设置静态文件服务，将静态文件目录映射到URL路径
+	// r.Static("/dist", "./dist")
+	// r.Static("/assets", "./dist/assets")
+	// r.Static("/svgs", "./dist/svgs")
+	// r.StaticFile("/favicon.ico", "./dist/favicon.ico")
+
+	// 处理根URL请求，返回index.html
+	// r.GET("/", func(c *gin.Context) {
+	// 	c.File("./dist/index.html")
+	// })
 	// 现在可以安全地注册 API 路由，不会有任何冲突
-	apiGroup := router.Group("/api")
+	apiGroup := r.Group("/api")
 	{
 		apiGroup.GET("/devices", func(c *gin.Context) {
 			c.JSON(http.StatusOK, devicesList)
@@ -313,13 +323,13 @@ func main() {
 	}
 
 	// 注册 gin WebSocket 路由
-	router.GET("/ws", func(c *gin.Context) {
+	r.GET("/ws", func(c *gin.Context) {
 		wsHandler(c)
 	})
 
 	// 因为我们的中间件已经处理了所有情况，所以 NoRoute 变得不再必要
 	// 你可以移除它，或者保留它来捕获非 GET 的未定义路由
-	router.NoRoute(func(c *gin.Context) {
+	r.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"code": "ROUTE_NOT_FOUND", "message": "Endpoint not found"})
 	})
 
@@ -330,7 +340,7 @@ func main() {
 		log.Println("HTTP server running at http://localhost" + *addr)
 		log.Println("Access the web UI at http://localhost" + *addr)
 		log.Println("Press Ctrl+C to stop the server")
-		if err := router.Run(*addr); err != nil {
+		if err := r.Run(*addr); err != nil {
 			log.Fatal(err)
 		}
 	}()

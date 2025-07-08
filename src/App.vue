@@ -7,6 +7,7 @@ import CustomSwitch from '@/components/custom-switch.vue';
 import ThreeCircle from '@/components/custom-demo.vue';
 import Button1 from '@/components/button1.vue';
 import TemperatureMeter from '@/components/TemperatureMeter.vue';
+import GaugeMeter from '@/components/GaugeMeter.vue';
 // 获取当前应用实例
 const instance = getCurrentInstance();
 // 同步注册组件
@@ -16,31 +17,34 @@ if (instance) {
   appContext.app.component('threeCircle', ThreeCircle);
   appContext.app.component('button1', Button1);
   appContext.app.component('tempMeter', TemperatureMeter);
+  appContext.app.component('gaugeMeter', GaugeMeter);
 }
 
-const modulesFiles = import.meta.glob("/public/svgs/**.svg", { eager: true, as: 'raw' });
-const register_config: any = [];
+// const register_config: any = [];
+// const modulesFiles = import.meta.glob("/public/svgs/**.svg", { eager: true, as: 'raw' });
 
-// 注册组件库（可根据实际需求扩展）
-for (const key in modulesFiles) {
-  const name = key.split("/").pop().split(".")[0];
-  register_config.push({
-    id: name,
-    title: name,
-    type: 'svg',
-    thumbnail: key.replace('/public', ''),
-    svg: modulesFiles[key],
-    props: {
-      fill: {
-        type: 'color',
-        val: '#FF0000',
-        title: '填充色'
-      }
-    }
-  });
-}
 
-leftAsideStore.registerConfig('svg文件', register_config);
+// // 注册组件库（可根据实际需求扩展）
+// for (const key in modulesFiles) {
+//   const name = key.split("/").pop().split(".")[0];
+//   register_config.push({
+//     id: name,
+//     title: name,
+//     type: 'svg',
+//     thumbnail: key.replace('/public', ''),
+//     svg: modulesFiles[key],
+//     props: {
+//       fill: {
+//         type: 'color',
+//         val: '#FF0000',
+//         title: '填充色'
+//       }
+//     }
+//   });
+// }
+
+// leftAsideStore.registerConfig('svg文件', register_config);
+
 leftAsideStore.registerConfig('自定义svg', [
   {
     id: 'customSwitch',
@@ -151,6 +155,25 @@ leftAsideStore.registerConfig('vue组件', [
           containerStyle: {
             width: '80px',
             height: '300px'
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 'gaugeMeter',
+    title: '仪表盘',
+    type: 'vue',
+    thumbnail: '/svgs/GaugeMeter.svg',
+    props: {
+      currentValue: {
+        type: 'number',
+        val: 50,
+        title: '当前值',
+        options: {
+          containerStyle: {
+            width: '200px',
+            height: '200px'
           }
         }
       }
