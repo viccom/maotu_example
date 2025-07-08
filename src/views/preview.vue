@@ -44,7 +44,9 @@ async function fetchDeviceTags() {
 }
 
 function connectWebSocket() {
-  ws = new WebSocket('ws://localhost:3001');
+  const wsProtocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+  const wsHost = window.location.host;
+  ws = new WebSocket(`${wsProtocol}://${wsHost}/`);
   ws.onopen = () => {
     console.log('WebSocket connected');
   };
