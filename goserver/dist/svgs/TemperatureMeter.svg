@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="80" height="300" viewBox="0 0 80 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- 温度计外壳 -->
+  <rect x="10" y="0" width="70" height="280" rx="8" ry="8" fill="#fff" stroke="#000" stroke-width="2"/>
+  <!-- 温度计内部背景 -->
+  <rect x="30" y="30" width="40" height="240" fill="#eee"/>
+  <!-- 刻度系统 -->
+  <!-- 主刻度 -->
+  <g stroke="#000" stroke-width="1.5" font-family="Arial" font-size="12" fill="#000" text-anchor="end">
+    <line x1="50" y1="30" x2="38" y2="30"/>
+    <text x="35" y="34">100</text>
+    <line x1="50" y1="78" x2="38" y2="78"/>
+    <text x="35" y="82">80</text>
+    <line x1="50" y1="126" x2="38" y2="126"/>
+    <text x="35" y="130">60</text>
+    <line x1="50" y1="174" x2="38" y2="174"/>
+    <text x="35" y="178">40</text>
+    <line x1="50" y1="222" x2="38" y2="222"/>
+    <text x="35" y="226">20</text>
+    <line x1="50" y1="270" x2="38" y2="270"/>
+    <text x="35" y="274">0</text>
+  </g>
+  <!-- 次刻度 -->
+  <g stroke="#000" stroke-width="1">
+    <line x1="50" y1="54" x2="44" y2="54"/>
+    <line x1="50" y1="102" x2="44" y2="102"/>
+    <line x1="50" y1="150" x2="44" y2="150"/>
+    <line x1="50" y1="198" x2="44" y2="198"/>
+    <line x1="50" y1="246" x2="44" y2="246"/>
+  </g>
+  <!-- 温度指示条 -->
+  <rect x="50" y="126" width="20" height="144" fill="red"/>
+  <!-- 温度单位 -->
+  <text x="50" y="20" font-family="Arial" font-size="14" text-anchor="middle" fill="#000">℃</text>
+</svg>

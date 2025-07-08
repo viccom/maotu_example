@@ -1,0 +1,60 @@
+<svg
+  width="200"
+  height="200"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="1.1"
+>
+  <!-- 外圆 -->
+  <circle cx="100" cy="100" r="95" fill="#ffffff" stroke="#000000" stroke-width="2" />
+  <!-- 刻度背景 -->
+  <path
+    d="M 20 100 A 80 80 0 0 1 180 100"
+    fill="none"
+    stroke="#eeeeee"
+    stroke-width="15"
+  />
+  <!-- 动态刻度（固定为50%） -->
+  <path
+    d="M 20 100 A 80 80 0 0 1 150 50"
+    fill="none"
+    stroke="#42b983"
+    stroke-width="15"
+  />
+  <!-- 刻度线（0-100，间隔10） -->
+  <g stroke="#000000" stroke-width="2">
+    <line x1="10" y1="100" x2="20" y2="100" />
+    <line x1="15.64" y1="69.28" x2="25.64" y2="79.28" />
+    <line x1="30.36" y1="40.72" x2="40.36" y2="50.72" />
+    <line x1="50.72" y1="15.64" x2="60.72" y2="25.64" />
+    <line x1="79.28" y1="30.36" x2="89.28" y2="40.36" />
+    <line x1="100" y1="10" x2="100" y2="20" />
+    <line x1="120.72" y1="30.36" x2="130.72" y2="40.36" />
+    <line x1="149.28" y1="15.64" x2="159.28" y2="25.64" />
+    <line x1="169.64" y1="40.72" x2="179.64" y2="50.72" />
+    <line x1="184.36" y1="69.28" x2="194.36" y2="79.28" />
+    <line x1="180" y1="100" x2="190" y2="100" />
+  </g>
+  <!-- 指针（指向50） -->
+  <line
+    x1="100"
+    y1="100"
+    x2="150"
+    y2="50"
+    stroke="red"
+    stroke-width="3"
+  />
+  <!-- 中心圆 -->
+  <circle cx="100" cy="100" r="5" fill="red" />
+  <!-- 数值显示 -->
+  <text
+    x="100"
+    y="130"
+    font-family="Arial"
+    font-size="16"
+    text-anchor="middle"
+    fill="#000000"
+  >
+    50
+  </text>
+</svg>

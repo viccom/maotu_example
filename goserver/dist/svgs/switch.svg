@@ -1,0 +1,7 @@
+<!-- switch.svg -->
+<svg width="120" height="60" xmlns="http://www.w3.org/2000/svg">
+  <!-- 使用固定值 -->
+  <rect fill="#CCCCCC" rx="30" ry="30" width="100%" height="100%"/>
+  <circle fill="#42b983" cx="30" cy="30" r="25"/>
+  <text x="60" y="35" text-anchor="middle" font-size="14" fill="#FFF">OFF</text>
+</svg>

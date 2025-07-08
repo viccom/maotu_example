@@ -1,0 +1,14 @@
+<!-- Windows 10/11 标准按钮 -->
+<svg width="120" height="32" viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- 按钮背景 -->
+  <rect x="1" y="1" width="118" height="30" rx="2" fill="#F0F0F0" stroke="#707070" stroke-width="1"/>
+  <!-- 按钮文字 -->
+  <text x="60" y="20" font-family="Segoe UI" font-size="12" text-anchor="middle" fill="#000000">
+    按钮
+  </text>
+  <!-- 悬停效果（可通过CSS控制） -->
+  <style>
+    rect:hover { fill: #E5F1FB; stroke: #0078D7; }
+    rect:active { fill: #CCE4F7; stroke-width: 2; }
+  </style>
+</svg>

@@ -24,14 +24,14 @@
   },
   "json": [
     {
-      "id": "text-vue-zlFAKpSJyf",
-      "title": "tag1",
-      "type": "vue",
+      "id": "customSwitch-8heJlJIw8T",
+      "title": "自定义开关",
+      "type": "custom-svg",
       "binfo": {
-        "width": 120,
-        "height": 30,
-        "left": 151.98579025268555,
-        "top": 96.00003051757812,
+        "left": 340,
+        "top": 189.99998092651367,
+        "width": 200,
+        "height": 90,
         "angle": 0
       },
       "resize": true,
@@ -40,13 +40,11 @@
       "active": false,
       "hide": false,
       "props": {
-        "text": "电流：",
-        "fontFamily": "黑体",
-        "fontSize": 18,
-        "fill": "rgba(9, 9, 8, 1)",
-        "vertical": false
+        "isOn": true,
+        "trackColor": "#CCCCCC",
+        "thumbColor": "#42b983"
       },
-      "tag": "text-vue",
+      "tag": "customSwitch",
       "common_animations": {
         "val": "",
         "delay": "delay-0s",
@@ -57,25 +55,25 @@
       "ports": [],
       "binds": [
         {
-          "id": "uV3kLEcHpv",
-          "pel_id": "text-vue-zlFAKpSJyf",
-          "bind_id": "devA.current",
-          "bind_name": "设备A-电流",
-          "bind_attr": "props.text.val",
+          "id": "NPNN6hvM2y",
+          "pel_id": "customSwitch-8heJlJIw8T",
+          "bind_id": "devA.switch",
+          "bind_name": "设备A-开关",
+          "bind_attr": "props.isOn.val",
           "bind_mapping": [],
           "triggers": []
         }
       ]
     },
     {
-      "id": "text-vue-S4BnRtJOzL",
-      "title": "tag2",
-      "type": "vue",
+      "id": "threeCircle-kyP7v02Nzt",
+      "title": "三色线段圆形",
+      "type": "custom-svg",
       "binfo": {
-        "width": 120,
-        "height": 30,
-        "left": 151.98579025268555,
-        "top": 151.9801483154297,
+        "left": 185.00000381469727,
+        "top": 180,
+        "width": 110,
+        "height": 110,
         "angle": 0
       },
       "resize": true,
@@ -84,13 +82,13 @@
       "active": false,
       "hide": false,
       "props": {
-        "text": "电压：",
-        "fontFamily": "黑体",
-        "fontSize": 18,
-        "fill": "rgba(9, 9, 8, 1)",
-        "vertical": false
+        "circleFill": "#FF0000",
+        "pathFill1": "#00FF00",
+        "pathFill2": "#0000FF",
+        "pathFill3": "#FFFF00",
+        "showLine2": true
       },
-      "tag": "text-vue",
+      "tag": "threeCircle",
       "common_animations": {
         "val": "",
         "delay": "delay-0s",
@@ -101,25 +99,25 @@
       "ports": [],
       "binds": [
         {
-          "id": "HUB8dtiRVi",
-          "pel_id": "text-vue-S4BnRtJOzL",
-          "bind_id": "devA.voltage",
-          "bind_name": "设备A-电压",
-          "bind_attr": "props.text.val",
+          "id": "RPEsxo3EEa",
+          "pel_id": "threeCircle-kyP7v02Nzt",
+          "bind_id": "devB.switch",
+          "bind_name": "设备B-开关",
+          "bind_attr": "props.showLine2.val",
           "bind_mapping": [],
           "triggers": []
         }
       ]
     },
     {
-      "id": "text-vue-7CG1Zf2vFE",
-      "title": "tag3",
+      "id": "button1-mJt51gLDC6",
+      "title": "按钮1",
       "type": "vue",
       "binfo": {
-        "width": 120,
-        "height": 30,
-        "left": 151.98579025268555,
-        "top": 209.9630889892578,
+        "left": 70,
+        "top": 360,
+        "width": 110,
+        "height": 50,
         "angle": 0
       },
       "resize": true,
@@ -128,13 +126,97 @@
       "active": false,
       "hide": false,
       "props": {
-        "text": "功率：",
+        "text": "页面1",
+        "bgColor": "#44B6E7",
         "fontFamily": "黑体",
-        "fontSize": 18,
-        "fill": "rgba(9, 9, 8, 1)",
-        "vertical": false
+        "customInfo": "页面1"
       },
-      "tag": "text-vue",
+      "tag": "button1",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [
+        {
+          "id": "AEoWokbMWU",
+          "type": "click",
+          "action": "customCode",
+          "change_attr": [],
+          "custom_code": "// $mtElMessage.success(\"成功\")\n// window.location.href = '/edit';\nfunction showCustomMessage(info) {\n  const val = info?.props?.customInfo?.val\n  $mtElMessage.success(val ?? \"val is null\") // 使用 nullish coalescing 操作符\n}\n// 调用\nshowCustomMessage($item_info)\n",
+          "event_flow_ids": [],
+          "trigger_rule": {
+            "value": null
+          }
+        }
+      ],
+      "ports": []
+    },
+    {
+      "id": "button1-didu6eCuJt",
+      "title": "按钮1",
+      "type": "vue",
+      "binfo": {
+        "left": 349.99999237060547,
+        "top": 360,
+        "width": 130,
+        "height": 50,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "页面2",
+        "bgColor": "#44B6E7",
+        "fontFamily": "黑体",
+        "customInfo": "页面2"
+      },
+      "tag": "button1",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [
+        {
+          "id": "qhnNufjcu5",
+          "type": "click",
+          "action": "customCode",
+          "change_attr": [],
+          "custom_code": "function showCustomMessage(info) {\n  const val = info?.props?.customInfo?.val\n  $mtElMessage.success(val ?? \"val is null\") // 使用 nullish coalescing 操作符\n}\n// 调用\nshowCustomMessage($item_info)\n",
+          "event_flow_ids": [],
+          "trigger_rule": {
+            "value": null
+          }
+        }
+      ],
+      "ports": []
+    },
+    {
+      "id": "tempMeter-fHnGB2nIQb",
+      "title": "温度计",
+      "type": "vue",
+      "binfo": {
+        "left": 50,
+        "top": 30,
+        "width": 80,
+        "height": 280,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "currentTemp": 20
+      },
+      "tag": "tempMeter",
       "common_animations": {
         "val": "",
         "delay": "delay-0s",
@@ -145,25 +227,25 @@
       "ports": [],
       "binds": [
         {
-          "id": "ZeDDCAXWHL",
-          "pel_id": "text-vue-7CG1Zf2vFE",
-          "bind_id": "devA.power",
-          "bind_name": "设备A-功率",
-          "bind_attr": "props.text.val",
+          "id": "9RE7IIPquK",
+          "pel_id": "tempMeter-fHnGB2nIQb",
+          "bind_id": "devB.temp",
+          "bind_name": "设备B-温度",
+          "bind_attr": "props.currentTemp.val",
           "bind_mapping": [],
           "triggers": []
         }
       ]
     },
     {
-      "id": "text-vue-HNaTUjHKop",
+      "id": "text-vue-tNrX0gMy66",
       "title": "文字",
       "type": "vue",
       "binfo": {
+        "left": 190,
+        "top": 50,
         "width": 60,
         "height": 30,
-        "left": 92.00001335144043,
-        "top": 96.00003051757812,
         "angle": 0
       },
       "resize": true,
@@ -172,10 +254,10 @@
       "active": false,
       "hide": false,
       "props": {
-        "text": "电流：",
+        "text": "温度：",
         "fontFamily": "黑体",
         "fontSize": 18,
-        "fill": "rgba(89, 4, 31, 1)",
+        "fill": "rgba(18, 17, 1, 1)",
         "vertical": false
       },
       "tag": "text-vue",
@@ -189,14 +271,14 @@
       "ports": []
     },
     {
-      "id": "text-vue-MHR4OrVExi",
+      "id": "text-vue-sf2tTYQfcU",
       "title": "文字",
       "type": "vue",
       "binfo": {
+        "left": 250,
+        "top": 50,
         "width": 60,
         "height": 30,
-        "left": 92.00001335144043,
-        "top": 151.9801483154297,
         "angle": 0
       },
       "resize": true,
@@ -205,78 +287,10 @@
       "active": false,
       "hide": false,
       "props": {
-        "text": "电压：",
+        "text": "----",
         "fontFamily": "黑体",
         "fontSize": 18,
-        "fill": "rgba(89, 4, 31, 1)",
-        "vertical": false
-      },
-      "tag": "text-vue",
-      "common_animations": {
-        "val": "",
-        "delay": "delay-0s",
-        "speed": "slow",
-        "repeat": "infinite"
-      },
-      "events": [],
-      "ports": [],
-      "binds": []
-    },
-    {
-      "id": "text-vue-5Gfsyrs91o",
-      "title": "文字",
-      "type": "vue",
-      "binfo": {
-        "width": 60,
-        "height": 30,
-        "left": 92.00001335144043,
-        "top": 209.2954864501953,
-        "angle": 0
-      },
-      "resize": true,
-      "rotate": true,
-      "lock": false,
-      "active": false,
-      "hide": false,
-      "props": {
-        "text": "功率：",
-        "fontFamily": "黑体",
-        "fontSize": 18,
-        "fill": "rgba(89, 4, 31, 1)",
-        "vertical": false
-      },
-      "tag": "text-vue",
-      "common_animations": {
-        "val": "",
-        "delay": "delay-0s",
-        "speed": "slow",
-        "repeat": "infinite"
-      },
-      "events": [],
-      "ports": [],
-      "binds": []
-    },
-    {
-      "id": "text-vue-yc9knLBWz3",
-      "title": "tag4",
-      "type": "vue",
-      "binfo": {
-        "width": 120,
-        "height": 30,
-        "left": 399.9999809265137,
-        "top": 96.00003051757812,
-        "angle": 0
-      },
-      "resize": true,
-      "rotate": true,
-      "lock": false,
-      "active": false,
-      "hide": false,
-      "props": {
-        "text": "温度：",
-        "fontFamily": "黑体",
-        "fontSize": 18,
-        "fill": "rgba(9, 9, 8, 1)",
+        "fill": "rgba(18, 17, 1, 1)",
         "vertical": false
       },
       "tag": "text-vue",
@@ -290,8 +304,8 @@
       "ports": [],
       "binds": [
         {
-          "id": "p3Ha9EvtY2",
-          "pel_id": "text-vue-yc9knLBWz3",
+          "id": "8b8hZTDPf3",
+          "pel_id": "text-vue-sf2tTYQfcU",
           "bind_id": "devB.temp",
           "bind_name": "设备B-温度",
           "bind_attr": "props.text.val",
@@ -301,14 +315,14 @@
       ]
     },
     {
-      "id": "text-vue-qzU6rDwVZD",
-      "title": "tag5",
+      "id": "text-vue-alYXUtHUuH",
+      "title": "文字",
       "type": "vue",
       "binfo": {
-        "width": 120,
+        "width": 60,
         "height": 30,
-        "left": 399.9857597351074,
-        "top": 151.9801483154297,
+        "left": 339.9999828338623,
+        "top": 49.999999046325684,
         "angle": 0
       },
       "resize": true,
@@ -320,7 +334,41 @@
         "text": "湿度：",
         "fontFamily": "黑体",
         "fontSize": 18,
-        "fill": "rgba(9, 9, 8, 1)",
+        "fill": "rgba(18, 17, 1, 1)",
+        "vertical": false
+      },
+      "tag": "text-vue",
+      "common_animations": {
+        "val": "",
+        "delay": "delay-0s",
+        "speed": "slow",
+        "repeat": "infinite"
+      },
+      "events": [],
+      "ports": [],
+      "binds": []
+    },
+    {
+      "id": "text-vue-bPZWwwJ8fA",
+      "title": "文字",
+      "type": "vue",
+      "binfo": {
+        "left": 400,
+        "top": 50,
+        "width": 60,
+        "height": 30,
+        "angle": 0
+      },
+      "resize": true,
+      "rotate": true,
+      "lock": false,
+      "active": false,
+      "hide": false,
+      "props": {
+        "text": "----",
+        "fontFamily": "黑体",
+        "fontSize": 18,
+        "fill": "rgba(18, 17, 1, 1)",
         "vertical": false
       },
       "tag": "text-vue",
@@ -334,8 +382,8 @@
       "ports": [],
       "binds": [
         {
-          "id": "6Ag66bl2hn",
-          "pel_id": "text-vue-qzU6rDwVZD",
+          "id": "WziQDpYLkL",
+          "pel_id": "text-vue-bPZWwwJ8fA",
           "bind_id": "devB.humi",
           "bind_name": "设备B-湿度",
           "bind_attr": "props.text.val",
@@ -345,14 +393,14 @@
       ]
     },
     {
-      "id": "text-vue-eKqnHI11pz",
-      "title": "tag6",
+      "id": "gaugeMeter-cMbPo7OdyX",
+      "title": "仪表盘",
       "type": "vue",
       "binfo": {
-        "width": 120,
-        "height": 30,
-        "left": 399.9857597351074,
-        "top": 209.6363983154297,
+        "left": 720,
+        "top": 190,
+        "width": 220,
+        "height": 210,
         "angle": 0
       },
       "resize": true,
@@ -361,13 +409,9 @@
       "active": false,
       "hide": false,
       "props": {
-        "text": "开关：",
-        "fontFamily": "黑体",
-        "fontSize": 18,
-        "fill": "rgba(9, 9, 8, 1)",
-        "vertical": false
+        "currentValue": 50
       },
-      "tag": "text-vue",
+      "tag": "gaugeMeter",
       "common_animations": {
         "val": "",
         "delay": "delay-0s",
@@ -378,154 +422,146 @@
       "ports": [],
       "binds": [
         {
-          "id": "T42l0XEBGk",
-          "pel_id": "text-vue-eKqnHI11pz",
-          "bind_id": "devB.switch",
-          "bind_name": "设备B-开关",
-          "bind_attr": "props.text.val",
+          "id": "UKGI7NI0r2",
+          "pel_id": "gaugeMeter-cMbPo7OdyX",
+          "bind_id": "devA.frequency",
+          "bind_name": "设备A-频率",
+          "bind_attr": "props.currentValue.val",
           "bind_mapping": [],
-          "triggers": [
-            {
-              "id": "vvTsFTCK8D",
-              "action": "changeAttr",
-              "rule": {
-                "operator": "=",
-                "value": "true"
-              },
-              "change_attr": [
-                {
-                  "id": "xGZ6iEEUWd",
-                  "target_id": "text-vue-eKqnHI11pz",
-                  "target_attr": "props.fill.val",
-                  "target_value": "#80FF00"
-                }
-              ],
-              "custom_code": ""
-            },
-            {
-              "id": "jZTzlnBw3j",
-              "action": "changeAttr",
-              "rule": {
-                "operator": "=",
-                "value": "false"
-              },
-              "change_attr": [
-                {
-                  "id": "xigdnyLLZi",
-                  "target_id": "text-vue-eKqnHI11pz",
-                  "target_attr": "props.fill.val",
-                  "target_value": "#070000"
-                }
-              ],
-              "custom_code": ""
-            }
-          ]
+          "triggers": []
         }
       ]
-    },
-    {
-      "id": "text-vue-vPnVKl1Q8j",
-      "title": "文字",
-      "type": "vue",
-      "binfo": {
-        "width": 60,
-        "height": 30,
-        "left": 339.9999828338623,
-        "top": 96.00003051757812,
-        "angle": 0
-      },
-      "resize": true,
-      "rotate": true,
-      "lock": false,
-      "active": false,
-      "hide": false,
-      "props": {
-        "text": "温度：",
-        "fontFamily": "黑体",
-        "fontSize": 18,
-        "fill": "rgba(89, 4, 31, 1)",
-        "vertical": false
-      },
-      "tag": "text-vue",
-      "common_animations": {
-        "val": "",
-        "delay": "delay-0s",
-        "speed": "slow",
-        "repeat": "infinite"
-      },
-      "events": [],
-      "ports": [],
-      "binds": []
-    },
-    {
-      "id": "text-vue-Gm1qpPjL25",
-      "title": "文字",
-      "type": "vue",
-      "binfo": {
-        "width": 60,
-        "height": 30,
-        "left": 339.9999828338623,
-        "top": 151.9801483154297,
-        "angle": 0
-      },
-      "resize": true,
-      "rotate": true,
-      "lock": false,
-      "active": false,
-      "hide": false,
-      "props": {
-        "text": "湿度：",
-        "fontFamily": "黑体",
-        "fontSize": 18,
-        "fill": "rgba(89, 4, 31, 1)",
-        "vertical": false
-      },
-      "tag": "text-vue",
-      "common_animations": {
-        "val": "",
-        "delay": "delay-0s",
-        "speed": "slow",
-        "repeat": "infinite"
-      },
-      "events": [],
-      "ports": [],
-      "binds": []
-    },
-    {
-      "id": "text-vue-tANIT2tDRE",
-      "title": "文字",
-      "type": "vue",
-      "binfo": {
-        "width": 60,
-        "height": 30,
-        "left": 339.9999828338623,
-        "top": 208.96876525878906,
-        "angle": 0
-      },
-      "resize": true,
-      "rotate": true,
-      "lock": false,
-      "active": false,
-      "hide": false,
-      "props": {
-        "text": "开关：",
-        "fontFamily": "黑体",
-        "fontSize": 18,
-        "fill": "rgba(89, 4, 31, 1)",
-        "vertical": false
-      },
-      "tag": "text-vue",
-      "common_animations": {
-        "val": "",
-        "delay": "delay-0s",
-        "speed": "slow",
-        "repeat": "infinite"
-      },
-      "events": [],
-      "ports": [],
-      "binds": []
     }
   ],
   "eventList": [],
-  "eventFlow": []
+  "eventFlow": [
+    {
+      "name": "ev1",
+      "flow_cfg": {
+        "data": {
+          "cells": [
+            {
+              "shape": "edge",
+              "attrs": {
+                "line": {
+                  "stroke": "#A2B1C3",
+                  "targetMarker": {
+                    "name": "block",
+                    "width": 12,
+                    "height": 8
+                  }
+                }
+              },
+              "id": "edge-8vGHA4s8fm",
+              "zIndex": 0,
+              "source": {
+                "cell": "$begin_node-ZgkUDKD87i",
+                "port": "$right"
+              },
+              "target": {
+                "cell": "$end_node-f8yt0mXlRu",
+                "port": "$left"
+              }
+            },
+            {
+              "position": {
+                "x": 60,
+                "y": 30
+              },
+              "size": {
+                "width": 120,
+                "height": 60
+              },
+              "view": "vue-shape-view",
+              "shape": "vue_begin_node",
+              "ports": {
+                "groups": {
+                  "left": {
+                    "position": "left",
+                    "attrs": {
+                      "circle": {
+                        "magnet": "passive",
+                        "stroke": "#8f8f8f",
+                        "r": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "position": "right",
+                    "attrs": {
+                      "circle": {
+                        "magnet": true,
+                        "stroke": "#8f8f8f",
+                        "r": 0
+                      }
+                    }
+                  }
+                },
+                "items": [
+                  {
+                    "id": "$right",
+                    "group": "right"
+                  }
+                ]
+              },
+              "id": "$begin_node-ZgkUDKD87i",
+              "label": "开始节点",
+              "zIndex": 1
+            },
+            {
+              "position": {
+                "x": 280,
+                "y": 30
+              },
+              "size": {
+                "width": 120,
+                "height": 60
+              },
+              "view": "vue-shape-view",
+              "shape": "vue_end_node",
+              "ports": {
+                "groups": {
+                  "left": {
+                    "position": "left",
+                    "attrs": {
+                      "circle": {
+                        "magnet": "passive",
+                        "stroke": "#8f8f8f",
+                        "r": 0
+                      }
+                    }
+                  },
+                  "right": {
+                    "position": "right",
+                    "attrs": {
+                      "circle": {
+                        "magnet": true,
+                        "stroke": "#8f8f8f",
+                        "r": 0
+                      }
+                    }
+                  }
+                },
+                "items": [
+                  {
+                    "id": "$left",
+                    "group": "left"
+                  }
+                ]
+              },
+              "id": "$end_node-f8yt0mXlRu",
+              "label": "结束节点",
+              "zIndex": 1
+            }
+          ]
+        },
+        "zoom": 1,
+        "translate": {
+          "tx": 0,
+          "ty": 0
+        }
+      },
+      "id": "flow_event_uQhrWcFPZR"
+    }
+  ]
 }
